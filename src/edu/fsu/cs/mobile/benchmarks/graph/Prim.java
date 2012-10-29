@@ -58,7 +58,7 @@ public class Prim {
 				for(int j = 1; j <= n;j++) {
 					if((i!=j)&&(i<j)) {
 						if((G[i][j] < G[k1][l1]) && G[i][j] !=0 ) {
-							k1 = i;
+					 		k1 = i;
 							l1 = j;
 						}
 					}
