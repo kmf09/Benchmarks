@@ -14,6 +14,7 @@ import edu.fsu.cs.mobile.benchmarks.tasks.BenchmarkTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BubbleSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BucketSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.CountingSortTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.DepthFirstSearchTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.DijkstraTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.EuclidTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.FibonacciTask;
@@ -23,6 +24,7 @@ import edu.fsu.cs.mobile.benchmarks.tasks.InsertionSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.KMPTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.MatrixMultTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.MergeSortTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.PrimTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.QuickSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.RadixSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.SubSeqTask;
@@ -31,7 +33,7 @@ import edu.fsu.cs.mobile.benchmarks.tasks.SubsetSumTask;
 
 public final class BenchmarkLauncher extends Activity {
 	public static enum Benchmark {
-		QSORT, MMULT, NFIB, EUCLID, SUBSUM, SUBSEQ, SUBSTR, KMP, HUFFCODE, DIJKSTRA, BUBBLESORT, HEAPSORT, MERGESORT, INSERTIONSORT, COUNTINGSORT, RADIXSORT, BUCKETSORT
+		QSORT, MMULT, NFIB, EUCLID, SUBSUM, SUBSEQ, SUBSTR, KMP, HUFFCODE, DIJKSTRA, BUBBLESORT, HEAPSORT, MERGESORT, INSERTIONSORT, COUNTINGSORT, RADIXSORT, BUCKETSORT, DEPTHFIRSTSEARCH, PRIMS
 	}
 
 	public static enum BenchSize {
@@ -50,7 +52,7 @@ public final class BenchmarkLauncher extends Activity {
 
 	protected BenchSize mSize = BenchSize.SMALL;
 
-	protected Benchmark mBench = Benchmark.BUCKETSORT;
+	protected Benchmark mBench = Benchmark.PRIMS;
 
 	protected boolean mNative = false;;
 
@@ -73,6 +75,8 @@ public final class BenchmarkLauncher extends Activity {
 		BENCHMARKS.put("countingsort", Benchmark.COUNTINGSORT);
 		BENCHMARKS.put("radixsort", Benchmark.RADIXSORT);
 		BENCHMARKS.put("bucketsort", Benchmark.BUCKETSORT);
+		BENCHMARKS.put("depthfirstsearch", Benchmark.DEPTHFIRSTSEARCH);
+		BENCHMARKS.put("prims", Benchmark.PRIMS);
 		BENCHMARKS = Collections.unmodifiableMap(BENCHMARKS);
 	}
 
@@ -136,6 +140,12 @@ public final class BenchmarkLauncher extends Activity {
 			break;
 		case BUCKETSORT: 
 			task = new BucketSortTask(); 
+			break;
+		case DEPTHFIRSTSEARCH: 
+			task = new DepthFirstSearchTask(); 
+			break;
+		case PRIMS:
+			task = new PrimTask();
 			break;
 		default:
 			Log.i(PKG, TAG + ": Unknown benchmark requested.");
