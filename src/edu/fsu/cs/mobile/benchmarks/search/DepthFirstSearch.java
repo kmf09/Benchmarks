@@ -39,89 +39,55 @@ public class DepthFirstSearch {
 	private static final int SMALL_SIZE = 10000; 
 	private static final int LARGE_SIZE = 60000;
 
-	public static class Vertex<T> {
-		private final T data;
-		private final List<Vertex<T>> _successors = new ArrayList<Vertex<T>>();
+	static ArrayList<ArrayList<Integer>> graph;
 
-		Vertex(T data)               { this.data = data;   }
-		T getData()                  { return data;        }
-		List<Vertex<T>> successors() { return _successors; }
+	public static void depthFirstSearch(int start) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		ArrayList<Integer> neighbor = new ArrayList<Integer>();
+		Stack<Integer> s = new Stack<Integer>();
 
-		public static <T> boolean depthFirstSearch(Vertex<T> start, Vector<Vertex<T>> result) {
-			if (result.contains(start))
-				return false;
+		s.push(start);
+		result.add(start);
+		neighbor = neighbors(start);
 
-			result.add(start);
-			Log.i("VISITING NODE:", ""+start.data);
-
-			for (Vertex<T> v : start.successors()) {
-				depthFirstSearch(v, result);
+		while (s.size() > 0) {
+			int currentVertex = s.pop();
+			neighbor = neighbors(currentVertex);
+			for (int i = 0; i < neighbor.size(); i++) {
+				if (!(result.contains(neighbor.get(i)))) { 
+					s.push(neighbor.get(i));
+					result.add(neighbor.get(i));
+				}
 			}
-
-			return false; 
 		}
 
-		public static List<Vertex<Integer>> petersenGraph(int[][] edges) {
-			List<Vertex<Integer>> v = new ArrayList<Vertex<Integer>>();
-			for (int i = 0; i < 1000; i++)
-				v.add(new Vertex<Integer>(i));
+		for (int i = 0; i < result.size(); i++)
+			System.out.println("result: "+result.get(i));
+	}
 
-			for (int[] e : edges)
-				v.get(e[0]).successors().add(v.get(e[1]));
+	public static void addNeighbor(int vertex, int append) {
+		graph.get(vertex).add(append);
+		graph.get(append).add(vertex);
+	}
 
-			return v;
-		}
-		
-		@Override
-		public String toString() {
-			return "" + data;
-		}
+	public static ArrayList<Integer> neighbors(int vertex) {
+		return graph.get(vertex);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public static Vector<Vertex<Integer>> sortLarge(ArrayList<Integer> array_list) {
-		int[][] edges = new int[array_list.size() / 2][2];
-		int i = 0; 
-		int count = 0; 
-		while (i < array_list.size()) {
-			edges[count][0] = array_list.get(i);
-			edges[count][1] = array_list.get(i+1);
-			count++;
-			i += 2; 
-		}
-
-		List<Vertex<Integer>> v = Vertex.petersenGraph(edges);
-		Vector<Vertex<Integer>> visitedNodes = new Vector<Vertex<Integer>>();
-		Vertex.depthFirstSearch(v.get(0), visitedNodes);
-		
-		Log.i("VISITED NODES", ""+visitedNodes);
-		
-		return visitedNodes; 
+	public static void sortLarge(ArrayList<ArrayList<Integer>> array_list) {
+		// stable is 1
+		depthFirstSearch(1);
 	}
 
-	public native static void sortLargeNative(ArrayList<Integer> array_list);
+	public native static void sortLargeNative(ArrayList<ArrayList<Integer>> array_list);
 
 	@SuppressWarnings("rawtypes")
-	public static Vector<Vertex<Integer>> sortSmall(ArrayList<Integer> array_list) {
-		int[][] edges = new int[array_list.size() / 2][2];
-		int i = 0; 
-		int count = 0; 
-		while (i < array_list.size()) {
-			edges[count][0] = array_list.get(i);
-			edges[count][1] = array_list.get(i+1);
-			count++;
-			i += 2; 
-		}
-
-		List<Vertex<Integer>> v = Vertex.petersenGraph(edges);
-		Vector<Vertex<Integer>> visitedNodes = new Vector<Vertex<Integer>>();
-		Vertex.depthFirstSearch(v.get(0), visitedNodes);
-		
-		Log.i("VISITED NODES", ""+visitedNodes);
-		
-		return visitedNodes; 
+	public static void sortSmall(ArrayList<ArrayList<Integer>> array_list) {
+		// stable is 1
+		depthFirstSearch(1); 
 	}
 
-	public native static void sortSmallNative(ArrayList<Integer> array_list);
+	public native static void sortSmallNative(ArrayList<ArrayList<Integer>> array_list);
 }
 

@@ -52,7 +52,7 @@ public final class BenchmarkLauncher extends Activity {
 
 	protected BenchSize mSize = BenchSize.SMALL;
 
-	protected Benchmark mBench = Benchmark.PRIMS;
+	protected Benchmark mBench = Benchmark.DEPTHFIRSTSEARCH;
 
 	protected boolean mNative = false;;
 

@@ -6,8 +6,6 @@ import java.util.Vector;
 
 import edu.fsu.cs.mobile.benchmarks.BenchmarkLauncher.BenchSize;
 import edu.fsu.cs.mobile.benchmarks.graph.Prim;
-import edu.fsu.cs.mobile.benchmarks.search.DepthFirstSearch;
-import edu.fsu.cs.mobile.benchmarks.search.DepthFirstSearch.Vertex;
 
 public class PrimTask extends BenchmarkTask {
 	private static final String SMALL_INPUT = "/data/benchmarks/data/qsort/input_small.dat";
