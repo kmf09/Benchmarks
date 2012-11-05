@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import edu.fsu.cs.mobile.benchmarks.tasks.BenchmarkTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.BreadthFirstSearchTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BubbleSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BucketSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.CountingSortTask;
@@ -33,7 +34,7 @@ import edu.fsu.cs.mobile.benchmarks.tasks.SubsetSumTask;
 
 public final class BenchmarkLauncher extends Activity {
 	public static enum Benchmark {
-		QSORT, MMULT, NFIB, EUCLID, SUBSUM, SUBSEQ, SUBSTR, KMP, HUFFCODE, DIJKSTRA, BUBBLESORT, HEAPSORT, MERGESORT, INSERTIONSORT, COUNTINGSORT, RADIXSORT, BUCKETSORT, DEPTHFIRSTSEARCH, PRIMS
+		QSORT, MMULT, NFIB, EUCLID, SUBSUM, SUBSEQ, SUBSTR, KMP, HUFFCODE, DIJKSTRA, BUBBLESORT, HEAPSORT, MERGESORT, INSERTIONSORT, COUNTINGSORT, RADIXSORT, BUCKETSORT, BREADTHFIRSTSEARCH, DEPTHFIRSTSEARCH, PRIMS
 	}
 
 	public static enum BenchSize {
@@ -52,7 +53,7 @@ public final class BenchmarkLauncher extends Activity {
 
 	protected BenchSize mSize = BenchSize.SMALL;
 
-	protected Benchmark mBench = Benchmark.DEPTHFIRSTSEARCH;
+	protected Benchmark mBench = Benchmark.BREADTHFIRSTSEARCH;
 
 	protected boolean mNative = false;;
 
@@ -76,6 +77,7 @@ public final class BenchmarkLauncher extends Activity {
 		BENCHMARKS.put("radixsort", Benchmark.RADIXSORT);
 		BENCHMARKS.put("bucketsort", Benchmark.BUCKETSORT);
 		BENCHMARKS.put("depthfirstsearch", Benchmark.DEPTHFIRSTSEARCH);
+		BENCHMARKS.put("breathfirstsearch", Benchmark.BREADTHFIRSTSEARCH);
 		BENCHMARKS.put("prims", Benchmark.PRIMS);
 		BENCHMARKS = Collections.unmodifiableMap(BENCHMARKS);
 	}
@@ -143,6 +145,9 @@ public final class BenchmarkLauncher extends Activity {
 			break;
 		case DEPTHFIRSTSEARCH: 
 			task = new DepthFirstSearchTask(); 
+			break;
+		case BREADTHFIRSTSEARCH: 
+			task = new BreadthFirstSearchTask(); 
 			break;
 		case PRIMS:
 			task = new PrimTask();

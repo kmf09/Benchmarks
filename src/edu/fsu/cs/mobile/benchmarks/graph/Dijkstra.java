@@ -22,11 +22,11 @@ public class Dijkstra {
 			return distances[arg0] - distances[arg1];
 		}
 	};
-
+/*
 	static {
 		System.loadLibrary("native_bench");
 	}
-
+*/
 	static boolean contains(int[] S, int size, int item) {
 		int i;
 		for (i = 0; i < size; i++) {
