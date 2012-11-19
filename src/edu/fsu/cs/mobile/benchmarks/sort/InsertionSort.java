@@ -1,11 +1,8 @@
+// Created by Katrina Fishman
 package edu.fsu.cs.mobile.benchmarks.sort;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
 
-import android.util.Log;
-// Created by Katrina Fishman
 public class InsertionSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "InsertionSort";
@@ -13,7 +10,6 @@ public class InsertionSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	private static ArrayList<Integer> sort(ArrayList<Integer> v) {
 		int key, i, j; 
 		for (j = 1; j != v.size(); j++) {
@@ -28,7 +24,6 @@ public class InsertionSort {
 		return v; 
 	} 
 
-	@SuppressWarnings("rawtypes")
 	public static void sortLarge(ArrayList<Integer> array_list) {
 		sort(array_list);
 		// Used for debugging purposes
@@ -39,7 +34,6 @@ public class InsertionSort {
 
 	public native static void sortLargeNative(ArrayList<Integer> array_list);
 
-	@SuppressWarnings("rawtypes")
 	public static void sortSmall(ArrayList<Integer> array_list) {
 		sort(array_list);
 		// Used for debugging purposes

@@ -1,11 +1,7 @@
-package edu.fsu.cs.mobile.benchmarks.sort;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-
-import android.util.Log;
 //from http://www.vogella.com/articles/JavaAlgorithmsMergesort/article.html
+package edu.fsu.cs.mobile.benchmarks.sort;
+import java.util.ArrayList;
+
 public class MergeSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "MergeSort";
@@ -13,7 +9,6 @@ public class MergeSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	private static ArrayList<Integer> sort(ArrayList<Integer> V) {
 		mergeSort(V, 0, V.size() - 1);
 		return V;

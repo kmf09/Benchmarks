@@ -1,10 +1,10 @@
+//from http://mathbits.com/MathBits/Java/arrays/Bubble.htm
 package edu.fsu.cs.mobile.benchmarks.sort;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.util.Log;
-//from http://mathbits.com/MathBits/Java/arrays/Bubble.htm
+
 public class BucketSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "BucketSort";
@@ -12,13 +12,12 @@ public class BucketSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	private static ArrayList<Double> sort(ArrayList<Double> V) {
 		ArrayList< ArrayList<Double> > B = new ArrayList<ArrayList<Double>>();
 		B.add(new ArrayList<Double>());
 		ArrayList<Double> D = new ArrayList<Double>(); 
 		int n = V.size(); 
-//n = 10;
+
 		// this pushes back n empty lists
 		for (int i = 0; i < n; i++)
 			B.add(D);
@@ -44,7 +43,8 @@ public class BucketSort {
 			key = V.get(j); 
 			i = j - 1; 
 			while ((i >= 0) && (V.get(i) > key)) {
-				V.set(i+1, V.get(i));				i -= 1; 
+				V.set(i+1, V.get(i));				
+				i -= 1; 
 			}
 			V.set(i+1, key);
 		}

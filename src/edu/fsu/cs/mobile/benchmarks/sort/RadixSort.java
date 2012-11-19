@@ -1,11 +1,10 @@
+// Created by Katrina Fishman
 package edu.fsu.cs.mobile.benchmarks.sort;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 import android.util.Log;
-//from http://mathbits.com/MathBits/Java/arrays/Bubble.htm
+
 public class RadixSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "RadixSort";
@@ -13,10 +12,8 @@ public class RadixSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	private static ArrayList<Integer> sort(ArrayList<Integer> V) {
-			int num = 1, numbers_in_max = 0, tens = 1, max = 0, hold;
-		    Iterator<Integer> iter = V.iterator(); 
+			int num = 1, numbers_in_max = 0, max = 0, hold; 
 		    ArrayList<ArrayList<Integer>> storage = new ArrayList<ArrayList<Integer>>();  
 		    
 		    for (int i = 0; i < 10; i++) 

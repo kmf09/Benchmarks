@@ -7,11 +7,9 @@ import edu.fsu.cs.mobile.benchmarks.BenchmarkLauncher.BenchSize;
 import edu.fsu.cs.mobile.benchmarks.sort.BucketSort;
 
 public class BucketSortTask extends BenchmarkTask {
-	private static final String SMALL_INPUT = "/data/benchmarks/data/qsort/input_small.dat";
-	private static final String LARGE_INPUT = "/data/benchmarks/data/qsort/input_large.dat";
-
 	private static final int SMALL_SIZE = 10000;
 	private static final int LARGE_SIZE = 60000;
+	public static final int seed = 0;
 	
 	ArrayList<Double> array_list_small;
 	ArrayList<Double> array_list_large; 
@@ -36,14 +34,12 @@ public class BucketSortTask extends BenchmarkTask {
 	// generate random numbers
 	@Override protected void onPreExecute() {
 		array_list_small = new ArrayList<Double>();
-		// seed is 1
 		// same sequence of random numbers every time - deterministic
-		Random ran = new Random(1);
+		Random ran = new Random(seed);
 		for (int i = 0; i < SMALL_SIZE; i++)
 			array_list_small.add(ran.nextDouble()); 
 		
 		array_list_large = new ArrayList<Double>(); 
-		// seed is 1
 		// same sequence of random numbers every time - deterministic
 		for (int i = 0; i < LARGE_SIZE; i++)
 			array_list_large.add(ran.nextDouble());

@@ -87,86 +87,14 @@ public class Dijkstra {
 		return predecessors;
 	}
 
-	public static void search(String fileName) {
-		BufferedReader input = null;
-		String line = null;
-		int size = 0;
-		int[][] G = null;
+	public static void search(int size, int[][] G) {
 		int[] result = null;
-		String[] split;
-
-		try {
-			input = new BufferedReader(new InputStreamReader(
-					new FileInputStream(fileName)));
-
-			size = Integer.parseInt(input.readLine());
-			G = new int[size][size];
-			result = new int[size];
-
-			while ((line = input.readLine()) != null) {
-				split = line.split(" ");
-				if (split.length != 3)
-					throw new Exception();
-
-				G[Integer.parseInt(split[0])][Integer.parseInt(split[1])] = Integer
-						.parseInt(split[2]);
-			}
-		} catch (Exception e) {
-			Log.e(PKG, "Error reading input file.");
-			e.printStackTrace();
-			return;
-		}
 
 		result = search(G, 0);
 
 		for (int i = 0; i < size; i++)
-			Log.i(PKG,
-					"Predecessor: [" + String.valueOf(i) + "]: "
-							+ String.valueOf(result[i]));
-
+			Log.i(PKG, "Predecessor: [" + String.valueOf(i) + "]: " + String.valueOf(result[i]));
 	}
 
 	public static native void searchNative(String fileName);
-
-	// private static int[] search(int[][] G, int source) {
-	// distances = new int[G.length];
-	// int[] predecessors = new int[G.length];
-	// PriorityQueue<Integer> Q = new PriorityQueue<Integer>(G.length,
-	// shortestDistanceComparator);
-	// HashSet<Integer> S = new HashSet<Integer>();
-	//
-	// for (int i = 0; i < G.length; i++) {
-	// distances[i] = Integer.MAX_VALUE;
-	// predecessors[i] = -1;
-	// }
-	//
-	// distances[source] = 0;
-	//
-	// for (int i = 0; i < G.length; i++)
-	// Q.add(i);
-	// int u;
-	// int alt;
-	//
-	// while (!Q.isEmpty()) {
-	// u = Q.poll();
-	// if (distances[u] == Integer.MAX_VALUE)
-	// break;
-	// S.add(u);
-	// for (int i = 0; i < G.length; i++) {
-	// if (S.contains(i) || G[u][i] < 1)
-	// continue;
-	//
-	// alt = distances[u] + G[u][i];
-	//
-	// if (alt < Math.abs(distances[i])) {
-	// distances[i] = alt;
-	// predecessors[i] = u;
-	// Q.remove(i);
-	// Q.offer(i);
-	// }
-	// }
-	// }
-	//
-	// return predecessors;
-	// }
 }

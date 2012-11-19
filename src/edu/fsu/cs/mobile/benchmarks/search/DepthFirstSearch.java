@@ -1,7 +1,6 @@
 // Katrina Fishman
 //http://www.brilliantsheep.com/depth-first-search-implementation-for-binary-trees/
 package edu.fsu.cs.mobile.benchmarks.search;
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class DepthFirstSearch {
@@ -36,7 +35,6 @@ public class DepthFirstSearch {
 		return false;
 	}
 	
-	@SuppressWarnings("rawtypes")
 	public static void searchLarge(int[] array, BinaryTree BTree) {
 		System.out.println( "Is 8 in the tree? " + 
 				( DepthFirstSearch.search( BTree.root, 8 )  ? "Yes!" : "No." ) );
@@ -47,7 +45,6 @@ public class DepthFirstSearch {
 
 	public native static void searchLargeNative(int[] array, BinaryTree BTree);
 
-	@SuppressWarnings("rawtypes")
 	public static void searchSmall(int[] array, BinaryTree BTree) {
 		System.out.println( "Is 8 in the tree? " + 
 				( DepthFirstSearch.search( BTree.root, 8 )  ? "Yes!" : "No." ) );

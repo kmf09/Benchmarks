@@ -1,11 +1,7 @@
-package edu.fsu.cs.mobile.benchmarks.sort;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-
-import android.util.Log;
 //from http://mathbits.com/MathBits/Java/arrays/Bubble.htm
+package edu.fsu.cs.mobile.benchmarks.sort;
+import java.util.ArrayList;
+
 public class BubbleSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "BubbleSort";
@@ -13,7 +9,6 @@ public class BubbleSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	private static ArrayList<Integer> sort(ArrayList<Integer> v) {
 		boolean flag = true; 
 		int j, temp;
@@ -33,7 +28,6 @@ public class BubbleSort {
 		return v; 
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static void sortLarge(ArrayList<Integer> array_list) {
 		sort(array_list);
 		// Used for debugging purposes
@@ -44,7 +38,6 @@ public class BubbleSort {
 
 	public native static void sortLargeNative(ArrayList<Integer> array_list);
 
-	@SuppressWarnings("rawtypes")
 	public static void sortSmall(ArrayList<Integer> array_list) {
 		sort(array_list);
 		// Used for debugging purposes

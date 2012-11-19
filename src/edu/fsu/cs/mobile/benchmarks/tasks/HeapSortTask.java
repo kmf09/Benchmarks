@@ -1,18 +1,14 @@
 package edu.fsu.cs.mobile.benchmarks.tasks;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 import edu.fsu.cs.mobile.benchmarks.BenchmarkLauncher.BenchSize;
-import edu.fsu.cs.mobile.benchmarks.sort.BubbleSort;
 import edu.fsu.cs.mobile.benchmarks.sort.HeapSort;
 
 public class HeapSortTask extends BenchmarkTask{
-	private static final String SMALL_INPUT = "/data/benchmarks/data/qsort/input_small.dat";
-	private static final String LARGE_INPUT = "/data/benchmarks/data/qsort/input_large.dat";
-
 	private static final int SMALL_SIZE = 10000;
 	private static final int LARGE_SIZE = 60000;
+	public static final int seed = 0;
 	
 	ArrayList<Integer> array_list_small, array_list_large; 
 	
@@ -38,7 +34,7 @@ public class HeapSortTask extends BenchmarkTask{
 		array_list_small = new ArrayList<Integer>();
 		// seed is 1
 		// same sequence of random numbers every time - deterministic
-		Random ran = new Random(1);
+		Random ran = new Random(seed);
 		for (int i = 0; i < SMALL_SIZE; i++)
 			array_list_small.add(ran.nextInt(1000000)); 
 		

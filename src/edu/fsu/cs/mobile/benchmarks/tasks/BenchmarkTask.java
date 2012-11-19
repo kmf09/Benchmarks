@@ -24,20 +24,14 @@ public abstract class BenchmarkTask extends AsyncTask<Object, Void, Void> {
 		return null;
 	}
 
-	protected BenchSize getSize() {
-		return mSize;
-	}
-
-	protected Boolean isNative() {
-		return mNative;
-	}
+	protected BenchSize getSize() { return mSize; }
+	protected Boolean isNative()  { return mNative; }
 
 	@Override
 	protected void onPostExecute(Void result) {
 		try {
 			Runtime.getRuntime().exec("/sbin/m5 dumpstats");
-		} catch (IOException e) {
-		}
+		} catch (IOException e) {}
 
 		if (mLauncher != null)
 			mLauncher.done();
@@ -50,7 +44,6 @@ public abstract class BenchmarkTask extends AsyncTask<Object, Void, Void> {
 		mNative = false;
 		try {
 			Runtime.getRuntime().exec("/sbin/m5 resetstats");
-		} catch (IOException e) {
-		}
+		} catch (IOException e) {}
 	}
 }

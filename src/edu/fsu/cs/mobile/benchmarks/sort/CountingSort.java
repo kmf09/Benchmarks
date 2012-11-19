@@ -1,10 +1,10 @@
+// Created by Katrina Fishman
 package edu.fsu.cs.mobile.benchmarks.sort;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.util.Log;
-// Created by Katrina Fishman
+
 public class CountingSort {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "CountingSort";
@@ -12,7 +12,6 @@ public class CountingSort {
 	private static final int LARGE_SIZE = 60000;
 
 	// this is the sorting algorithm
-	@SuppressWarnings("rawtypes")
 	public static ArrayList<Integer> sort(ArrayList<Integer> V) {
 	    ArrayList<Integer> B = new ArrayList<Integer>();
 
@@ -25,7 +24,6 @@ public class CountingSort {
 	    return countingSort(V, B, max);
 	}
 	
-	@SuppressWarnings("null")
 	public static ArrayList<Integer> countingSort(ArrayList<Integer> V, ArrayList<Integer> B, int max) {
 	    ArrayList<Integer> C = new ArrayList<Integer>();
 

@@ -31,7 +31,6 @@ public class BreadthFirstSearch {
 		return true; 
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static void searchLarge(int[] array, BinaryTree BTree) {
 		mresult = new ArrayList<Integer>();
 		search(BTree.root, 8);
@@ -42,7 +41,6 @@ public class BreadthFirstSearch {
 
 	public native static void searchLargeNative(int[] array, BinaryTree BTree);
 
-	@SuppressWarnings("rawtypes")
 	public static void searchSmall(int[] array, BinaryTree BTree) {
 		mresult = new ArrayList<Integer>();
 		search(BTree.root, 8);
