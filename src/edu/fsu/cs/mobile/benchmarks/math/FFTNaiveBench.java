@@ -5,8 +5,8 @@ import java.util.Random;
 public class FFTNaiveBench {
 	private static final String PKG = "edu.fsu.cs.mobile.benchmarks";
 	private static final String TAG = "FFFTNative";
-	private static final int SMALL_SIZE = 10000; 
-	private static final int LARGE_SIZE = 60000;
+	private static final int SMALL_SIZE = 8192; // must be a power of 2
+	private static final int LARGE_SIZE = 65536; // must be a power of 2
 	public static final int seed = 0;
     public static final int testsize = 16384;
     
@@ -26,10 +26,9 @@ public class FFTNaiveBench {
 	public static void sortSmall() {
 		Random r = new Random(seed);
         
-		int same = 6; 
-        Complex[] za = new Complex[same];
+        Complex[] za = new Complex[SMALL_SIZE];
         
-        for (int i = 0; i < same; ++i)
+        for (int i = 0; i < SMALL_SIZE; ++i)
             za[i] = new Complex(r.nextDouble(), r.nextDouble());
 
         Complex[] zr = FFT.fftNaive(za);

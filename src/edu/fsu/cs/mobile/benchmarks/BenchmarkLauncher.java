@@ -1,5 +1,5 @@
 /*
- * Author: Ira Ray Jenkins and Katrina Fishman
+ * Author: Katrina Fishman
  */
 package edu.fsu.cs.mobile.benchmarks;
 
@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import edu.fsu.cs.mobile.benchmarks.tasks.BenchmarkTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.BiDirectionalTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.BitonicTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BreadthFirstSearchTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BubbleSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.BucketSortTask;
@@ -20,7 +22,7 @@ import edu.fsu.cs.mobile.benchmarks.tasks.DepthFirstSearchTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.DijkstraTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.EuclidTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.FFTInPlaceTask;
-import edu.fsu.cs.mobile.benchmarks.tasks.FFTNativeTask;
+import edu.fsu.cs.mobile.benchmarks.tasks.FFTNaiveTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.FibonacciTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.HeapSortTask;
 import edu.fsu.cs.mobile.benchmarks.tasks.HuffmanTask;
@@ -38,10 +40,21 @@ import edu.fsu.cs.mobile.benchmarks.tasks.SubsetSumTask;
 
 public final class BenchmarkLauncher extends Activity {
 	public static enum Benchmark {
-		QSORT, MMULT, NFIB, EUCLID, SUBSUM, SUBSEQ, SUBSTR, KMP, HUFFCODE, 
-		DIJKSTRA, BUBBLESORT, HEAPSORT, MERGESORT, INSERTIONSORT, COUNTINGSORT, 
-		RADIXSORT, BUCKETSORT, BREADTHFIRSTSEARCH, DEPTHFIRSTSEARCH, PRIM, 
-		FFTNative, FFTInPlace, LCS, CLOSESTPAIRNAIVE
+		BIDIRECTIONAL, BITONICSORT, BREADTHFIRSTSEARCH, BUBBLESORT, BUCKETSORT, 
+		COUNTINGSORT, CLOSESTPAIRNAIVE,
+		DEPTHFIRSTSEARCH, DIJKSTRA,
+		EUCLID,
+		FFTInPlace, FFTNaive,
+		HEAPSORT, HUFFCODE,
+		INSERTIONSORT,
+		KMP,
+		LCS, 
+		MERGESORT, MMULT,
+		NFIB,
+		PRIM,
+		QSORT,
+		RADIXSORT,
+		SUBSEQ, SUBSTR, SUBSUM,    
 	}
 
 	public static enum BenchSize { SMALL, LARGE }
@@ -50,12 +63,12 @@ public final class BenchmarkLauncher extends Activity {
 	private static final String BENCH_KEY = "bench";
 	private static final String SIZE_KEY = "size";
 	private static final String LARGE = "large";
-	private static Map<String, Benchmark> BENCHMARKS;
+	private static Map<String, Benchmark> BENCHMARKS; 
 	private BenchmarkTask mTask;
-	protected BenchSize mSize = BenchSize.SMALL;
 	protected boolean mNative = false;
 	
-	protected Benchmark mBench = Benchmark.CLOSESTPAIRNAIVE;
+	protected BenchSize mSize = BenchSize.SMALL;
+	protected Benchmark mBench = Benchmark.BIDIRECTIONAL;
 
 	static {
 		BENCHMARKS = new HashMap<String, Benchmark>();
@@ -79,10 +92,12 @@ public final class BenchmarkLauncher extends Activity {
 		BENCHMARKS.put("depthfirstsearch", Benchmark.DEPTHFIRSTSEARCH);
 		BENCHMARKS.put("breathfirstsearch", Benchmark.BREADTHFIRSTSEARCH);
 		BENCHMARKS.put("prims", Benchmark.PRIM);
-		BENCHMARKS.put("topologicalsort", Benchmark.FFTNative);
+		BENCHMARKS.put("topologicalsort", Benchmark.FFTNaive);
 		BENCHMARKS.put("topologicalsort", Benchmark.FFTInPlace);
 		BENCHMARKS.put("longestcommonsubsequence", Benchmark.LCS);
 		BENCHMARKS.put("closestpairnaive", Benchmark.CLOSESTPAIRNAIVE);
+		BENCHMARKS.put("bitonic", Benchmark.BITONICSORT);
+		BENCHMARKS.put("bidirectional", Benchmark.BIDIRECTIONAL);
 		BENCHMARKS = Collections.unmodifiableMap(BENCHMARKS);
 	}
 
@@ -152,17 +167,23 @@ public final class BenchmarkLauncher extends Activity {
 		case PRIM:
 			task = new PrimTask();
 			break;
-		case FFTNative:
-			task = new FFTInPlaceTask();
+		case FFTNaive:
+			task = new FFTNaiveTask();
 			break;
 		case FFTInPlace:
-			task = new FFTNativeTask();
+			task = new FFTInPlaceTask();
 			break;
 		case LCS:
 			task = new LCSTask();
 			break;
 		case CLOSESTPAIRNAIVE:
 			task = new ClosestPairNaiveTask();
+			break;
+		case BITONICSORT:
+			task = new BitonicTask();
+			break;
+		case BIDIRECTIONAL:
+			task = new BiDirectionalTask();
 			break;
 		default:
 			Log.i(PKG, TAG + ": Unknown benchmark requested.");
@@ -172,8 +193,7 @@ public final class BenchmarkLauncher extends Activity {
 
 	public BenchmarkTask getTask() { return mTask; }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	@Override public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
@@ -194,8 +214,7 @@ public final class BenchmarkLauncher extends Activity {
 			{ mNative = true; } 
 	} 
 
-	@Override
-	protected void onStart() {
+	@Override protected void onStart() {
 		super.onStart(); 
 		setTask(getBenchTask(mBench));
 		getTask().execute(this, mSize, mNative);
