@@ -1,5 +1,5 @@
 /*
- * Author: Katrina Fishman
+ * Author: Katrina Fishman and Ira Jenkins
  */
 package edu.fsu.cs.mobile.benchmarks;
 
@@ -67,6 +67,7 @@ public final class BenchmarkLauncher extends Activity {
 	private BenchmarkTask mTask;
 	protected boolean mNative = false;
 	
+	// CHANGE BENCHMAKRS HERE
 	protected BenchSize mSize = BenchSize.SMALL;
 	protected Benchmark mBench = Benchmark.BIDIRECTIONAL;
 
